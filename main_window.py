@@ -1,26 +1,19 @@
 #!/usr/bin/python3
 
 """
-CenterSide: a board game
+Written by Albert "Anferensis" Ong
 
-Created by Albert "Anferensis" Ong
+Created: 2016
 """
 
-
 import os
-import sys 
-
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
+from PyQt5.QtWidgets import QMainWindow, QLabel
 from PyQt5.QtSvg import *
-
 from game_window import GameWindow
 from menu_window import MenuWindow
 from stylesheets import StyleSheets
-
-
-#====================================================================================
 
 
 class MainWindow(QMainWindow):
@@ -34,20 +27,20 @@ class MainWindow(QMainWindow):
     def __init__(self, theme = "Default"):
         super().__init__()
         
-        self.sound_on =             True
-        self.language =             "English"
-        self.default_names =        ["Player 1", "Player 2"]
-        self.player_names =         ["", ""]
-        self.theme =                theme
-        self.stylesheets =          StyleSheets(theme)
-        self.AI_player =            "Player 1"
+        self.sound_on = True
+        self.language = "English"
+        self.default_names = ["Player 1", "Player 2"]
+        self.player_names = ["", ""]
+        self.theme = theme
+        self.stylesheets = StyleSheets(theme)
+        self.AI_player = "Player 1"
         
         self.setWindowTitle("CenterSide")
         
         self.width = 1280
         self.height = 720
         
-        self.setFixedSize(self.width, self.height )
+        self.setFixedSize(self.width, self.height)
         
         os.chdir("assets")
         
@@ -66,18 +59,18 @@ class MainWindow(QMainWindow):
         self.icon_help = QIcon("help_button.png")
         self.icon_quit = QIcon("quit_button.png")
         
-        self.blank_piece =          QIcon("SVG/blank.svg")
-        self.p1_piece =             QIcon("SVG/color1.svg")
-        self.p2_piece =             QIcon("SVG/color2.svg")
-        self.p1_piece_opaque =      QIcon("SVG/color1_opaque.svg")
-        self.p2_piece_opaque =      QIcon("SVG/color2_opaque.svg")
-        self.deny =                 QIcon("SVG/deny.svg")
-        self.deny_opaque =          QIcon("SVG/deny_opaque.svg")
+        self.blank_piece = QIcon("SVG/blank.svg")
+        self.p1_piece = QIcon("SVG/color1.svg")
+        self.p2_piece = QIcon("SVG/color2.svg")
+        self.p1_piece_opaque = QIcon("SVG/color1_opaque.svg")
+        self.p2_piece_opaque = QIcon("SVG/color2_opaque.svg")
+        self.deny = QIcon("SVG/deny.svg")
+        self.deny_opaque = QIcon("SVG/deny_opaque.svg")
         
-        self.p1_deny =              QPixmap("SVG/color1_deny.svg")
-        self.p2_deny =              QPixmap("SVG/color2_deny.svg")
-        self.p1_deny_opaque =       QPixmap("SVG/color1_deny_opaque.svg")
-        self.p2_deny_opaque =       QPixmap("SVG/color2_deny_opaque.svg")
+        self.p1_deny = QPixmap("SVG/color1_deny.svg")
+        self.p2_deny = QPixmap("SVG/color2_deny.svg")
+        self.p1_deny_opaque = QPixmap("SVG/color1_deny_opaque.svg")
+        self.p2_deny_opaque = QPixmap("SVG/color2_deny_opaque.svg")
         
         self.logo = QIcon("SVG/CenterSide_icon.svg")
         self.setWindowIcon(self.logo)
@@ -85,7 +78,8 @@ class MainWindow(QMainWindow):
         self.build_assets()
         
         self.menu_window = MenuWindow(self)
-        self.setCentralWidget(GameWindow(self, "local"))
+        # self.setCentralWidget(GameWindow(self, "local"))
+        self.setCentralWidget(self.menu_window)
                             
         self.show()
         
@@ -100,17 +94,8 @@ class MainWindow(QMainWindow):
             
         # ~ self.assets_dir = cwd + "/CenterSide_Themes/" + theme + "/"
         
-        
-        
-        
-        
-        
         # ~ self.blank_langmssg =       QPixmap("blank_langmssg.svg")
         # ~ self.blank_thememssg =      QPixmap("blank_thememssg.svg")
-        
-        
-        
-        
         
         # ~ self.icon_info =            QIcon("Icons/info.svg")
         # ~ self.icon_intructions =     QIcon("Icons/instructions.svg")
@@ -130,39 +115,26 @@ class MainWindow(QMainWindow):
         # ~ self.icon_soundoff =        QIcon("Icons/soundoff.svg")
         # ~ self.icon_vsAI =            QIcon("Icons/vsAI.svg")
         
-        
-        
     def local_game(self):
-        gamewindow = CenterSideGame(self, "Local")
-        self.setCentralWidget(gamewindow)
+        game_window = GameWindow(self, "Local")
+        self.setCentralWidget(game_window)
             
     
     def change_theme(self, theme):
         
-        self.theme =            theme
-        self.stylesheets =      StyleSheets(theme)
+        self.theme = theme
+        self.stylesheets = StyleSheets(theme)
         self.build_assets()
         self.setWindowIcon(self.logo)
         
-        session = CenterSideSession(self)
-        self.setCentralWidget(session)
+        menu_window= MenuWindow(self)
+        self.setCentralWidget(menu_window)
         
-        
-        
+
     def return_to_titlemenu(self):
         self.setCentralWidget(self.menu_window)
+   
 
-
-
-#====================================================================================       
-        
-def main():
-    app = QApplication(sys.argv)
-    mainwindow = MainWindow()
-    sys.exit(app.exec_())
-  
-if __name__ == "__main__": 
-    main()  
     
     
     

@@ -1,20 +1,17 @@
 #!/usr/bin/python3
 
 """
-CenterSide: a board game
+Written by Albert "Anferensis" Ong
 
-Created by Albert "Anferensis" Ong
+Created: 2016
 """
 
-import sys
 
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import *
-
 from stylesheets import StyleSheets
 
-#====================================================================================
 
 class MenuWindow(QWidget):
     """
@@ -52,8 +49,6 @@ class MenuWindow(QWidget):
         
         self.create_title_buttons()
         self.create_play_buttons()
-        # ~ self.create_vsAI_buttons()
-        # ~ self.create_options_buttons()
         
         
         

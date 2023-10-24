@@ -1,28 +1,22 @@
 #!/usr/bin/python3
 
 """
-CenterSide: a board game
+Written by Albert "Anferensis" Ong
 
-Created by Albert "Anferensis" Ong
+Created: 2016
 """
 
-import sys 
 from itertools import cycle
-
 from PyQt5.QtCore import Qt, QSize, QTimer
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtMultimedia import QSound
 from PyQt5.QtWidgets import *
-
 from stylesheets import StyleSheets
 
 
-
-#====================================================================================
-
 class GameWindow(QWidget):
     """
-    Creates a game of CenterSide given a CenterSideWindow and a mode.
+    Creates a game of CenterSide given a MainWindow and a mode.
     """
     def __init__(self, mainwindow, mode):
         super().__init__()
@@ -97,14 +91,14 @@ class GameWindow(QWidget):
         
         
     def import_sounds(self):
-      
-      for asset_name in ("play_piece", 
-                         "deny_piece", 
-                         "restart", 
-                         "win"):
+      pass
+    #   for asset_name in ("play_piece", 
+    #                      "deny_piece", 
+    #                      "restart", 
+    #                      "win"):
                            
-          sound_file = QSound("assets/SFX/" + asset_name + ".wav")
-          setattr(self, "sound_" + asset_name, sound_file)
+    #       sound_file = QSound("assets/SFX/" + asset_name + ".wav")
+    #       setattr(self, "sound_" + asset_name, sound_file)
       
         # ~ assets_dir = self.mainwindow.assets_dir
         # ~ self.sound_playpiece =   QSound(assets_dir + "SFX/play_piece.wav")
